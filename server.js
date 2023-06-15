@@ -97,7 +97,7 @@ function performQuery(sql, successMessage, errorMessage) {
 
 // function used for viewing all of the departments
 function viewAllDepartments() {
-  const sql = 'SELECT * FROM departments';
+  const sql = 'SELECT * FROM department';
   performQuery(sql, 'Viewing All Departments', 'Failed to View Departments');
 }
 
