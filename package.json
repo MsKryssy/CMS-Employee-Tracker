@@ -1,7 +1,7 @@
 {
   "name": "cms-employee-tracker",
   "version": "1.0.0",
-  "description": "[![License](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)",
+  "description": "This application can be used to perform a few of the CRUD operations within the employee database.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

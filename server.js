@@ -14,7 +14,9 @@ const connection = mysql.createConnection({
   password: '',
   database: 'employee_db',
 }, 
-console.log('Connected to the employee database'));
+() => {
+  console.log('Connected to the employee database');
+});
 
 // questions needed to navigate thru the database for the user, placed into an array
 const questions = [{
@@ -83,6 +85,8 @@ function performQuery(sql, successMessage, errorMessage) {
   connection.query(sql, (err, results) => {
     if (err) {
       console.log(errorMessage);
+// Prints the error message for further debugging if needed.
+      console.log(err); 
     } else {
       console.table(results);
       console.log(successMessage);
@@ -91,27 +95,27 @@ function performQuery(sql, successMessage, errorMessage) {
   });
 }
 
-// function used for viewing all roles
-function viewAllRoles() {
-  const sql = `SELECT roles.id, roles.title, roles.salary, department.name AS department 
-              FROM roles
-              JOIN department ON roles.department_id = department.id`;
-  performQuery(sql, 'Viewing All Roles', 'Failed to View Roles');
-}
-
 // function used for viewing all of the departments
 function viewAllDepartments() {
-  const sql = 'SELECT * FROM department';
+  const sql = 'SELECT * FROM departments';
   performQuery(sql, 'Viewing All Departments', 'Failed to View Departments');
+}
+
+// function used for viewing all roles
+function viewAllRoles() {
+  const sql = `SELECT role.id, role.title, role.salary, department.name AS department 
+              FROM role
+              JOIN department ON role.department_id = department.id`;
+  performQuery(sql, 'Viewing All Roles', 'Failed to View Roles');
 }
 
 // function used to view all of the employees
 function viewAllEmployees() {
-  const sql = `SELECT employee.first_name, employee.last_name, roles.title, roles.salary, department.name,
-              CONCAT(e.first_name, '', e.last_name) AS Manager
+  const sql = `SELECT employee.first_name, employee.last_name, role.title, role.salary, department.name,
+              CONCAT(e.first_name, ' ', e.last_name) AS Manager
               FROM employee
-              INNER JOIN roles ON roles.id = employee.role.id
-              INNER JOIN department ON department.id = roles.department_id
+              INNER JOIN role ON role.id = employee.role_id
+              INNER JOIN department ON department.id = role.department_id
               LEFT JOIN employee e ON employee.manager_id = e.id;`;
   performQuery(sql, 'Viewing All Employees', 'Failed to View Employees');
 }
