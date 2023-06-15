@@ -2,7 +2,7 @@
   "name": "cms-employee-tracker",
   "version": "1.0.0",
   "description": "[![License](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,14 +11,17 @@
     "url": "git+https://github.com/MsKryssy/CMS-Employee-Tracker.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Krystal Richardson",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/MsKryssy/CMS-Employee-Tracker/issues"
   },
   "homepage": "https://github.com/MsKryssy/CMS-Employee-Tracker#readme",
   "dependencies": {
+    "asciiart-logo": "^0.2.7",
+    "console.table": "^0.10.0",
     "inquirer": "^8.2.4",
-    "mysql2": "^3.3.3"
+    "mysql2": "^3.3.3",
+    "sequelize": "^6.32.0"
   }
 }
